@@ -1,6 +1,7 @@
 // Import Firebase SDK
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 import { getDatabase, ref, push, set } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js';
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-analytics.js';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -16,6 +17,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const analytics = getAnalytics(app);
 
 // DOM Elements
 const header = document.querySelector('.header');
@@ -48,6 +50,10 @@ function initApp() {
     initCharts();
     loadTestimonials();
     loadDesignQuotes();
+    initParticles();
+    initTyped();
+    initScrollMagic();
+    initVanillaTilt();
 }
 
 // Initialize AOS (Animate on Scroll)
@@ -58,9 +64,9 @@ function initAOS() {
     });
 }
 
-// Initialize Swiper for testimonials
+// Initialize Swiper for testimonials and quotes
 function initSwiper() {
-    new Swiper('.swiper-container', {
+    new Swiper('.testimonials .swiper-container', {
         effect: 'coverflow',
         grabCursor: true,
         centeredSlides: true,
@@ -74,6 +80,20 @@ function initSwiper() {
         },
         pagination: {
             el: '.swiper-pagination',
+        },
+    });
+
+    new Swiper('.design-quotes .swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
         },
     });
 }
@@ -212,7 +232,7 @@ function loadTestimonials() {
         // Add more testimonials...
     ];
 
-    const swiperWrapper = document.querySelector('.swiper-wrapper');
+    const swiperWrapper = document.querySelector('.testimonials .swiper-wrapper');
     testimonials.forEach(testimonial => {
         const slide = document.createElement('div');
         slide.classList.add('swiper-slide');
@@ -234,10 +254,10 @@ function loadDesignQuotes() {
         // Add more quotes...
     ];
 
-    const quoteSlider = document.querySelector('.quote-slider');
+    const quoteSlider =  document.querySelector('.design-quotes .swiper-wrapper');
     quotes.forEach(quote => {
         const quoteElement = document.createElement('div');
-        quoteElement.classList.add('quote');
+        quoteElement.classList.add('swiper-slide');
         quoteElement.innerHTML = `
             <blockquote>${quote.text}</blockquote>
             <cite>- ${quote.author}</cite>
@@ -352,4 +372,344 @@ if ('serviceWorker' in navigator) {
                 console.log('Service Worker registration failed:', error);
             });
     });
-          }
+}
+
+// Initialize Particles.js
+function initParticles() {
+    particlesJS('particles-js', {
+        particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            shape: { type: "circle", stroke: { width: 0, color: "#000000" }, },
+            opacity: { value: 0.5, random: false, },
+            size: { value: 3, random: true, },
+            line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+            move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false, },
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+            modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } },
+        },
+        retina_detect: true
+    });
+}
+
+// Initialize Typed.js
+function initTyped() {
+    new Typed('#typed-text', {
+        strings: ['Designs Inovadores', 'Soluções Criativas', 'Experiências Únicas'],
+        typeSpeed: 50,
+        backSpeed: 50,
+        loop: true
+    });
+}
+
+// Initialize ScrollMagic
+function initScrollMagic() {
+    const controller = new ScrollMagic.Controller();
+
+    new ScrollMagic.Scene({
+        triggerElement: "#services",
+        triggerHook: 0.9,
+        reverse: false
+    })
+    .setClassToggle("#services", "fade-in")
+    .addTo(controller);
+
+    // Add more scenes for other sections
+}
+
+// Initialize VanillaTilt
+function initVanillaTilt() {
+    VanillaTilt.init(document.querySelectorAll(".service-item"), {
+        max: 25,
+        speed: 400
+    });
+}
+
+// Dynamic Content Loading
+function loadDynamicContent(url, targetElement) {
+    fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector(targetElement).innerHTML = data;
+        })
+        .catch(error => console.error('Error loading dynamic content:', error));
+}
+
+// Infinite Scroll for Gallery
+let page = 1;
+function loadMoreImages() {
+    // Simulating API call to load more images
+    const newImages = [
+        { src: 'new-image-1.jpg', alt: 'New Image 1' },
+        { src: 'new-image-2.jpg', alt: 'New Image 2' },
+        // Add more images...
+    ];
+
+    newImages.forEach(img => {
+        const imgElement = document.createElement('img');
+        imgElement.src = img.src;
+        imgElement.alt = img.alt;
+        imgElement.classList.add('gallery-item');
+        galleryContainer.appendChild(imgElement);
+    });
+
+    page++;
+}
+
+window.addEventListener('scroll', () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+        loadMoreImages();
+    }
+});
+
+// Custom Events
+const customEvent = new CustomEvent('projectCompleted', {
+    detail: { projectName: 'Website Redesign', clientName: 'Tech Corp' }
+});
+
+document.addEventListener('projectCompleted', (e) => {
+    console.log(`Project ${e.detail.projectName} completed for ${e.detail.clientName}`);
+    // You could use this to trigger notifications or updates
+});
+
+// Trigger the event when a project is marked as completed
+function completeProject(projectName, clientName) {
+    document.dispatchEvent(new CustomEvent('projectCompleted', {
+        detail: { projectName, clientName }
+    }));
+}
+
+// Web Speech API for Accessibility
+function speakText(text) {
+    const speech = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(speech);
+}
+
+// Example usage:
+document.querySelectorAll('.service-item h3').forEach(heading => {
+    heading.addEventListener('click', () => speakText(heading.textContent));
+});
+
+// Intersection Observer for Animations
+const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+const animationObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animated');
+        }
+    });
+}, { threshold: 0.1 });
+
+animatedElements.forEach(el => animationObserver.observe(el));
+
+// WebGL Background (Three.js would be imported in the HTML)
+function initWebGLBackground() {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    camera.position.z = 5;
+
+    function animate() {
+        requestAnimationFrame(animate);
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        renderer.render(scene, camera);
+    }
+
+    animate();
+}
+
+// Call this function if you want to add a WebGL background
+// initWebGLBackground();
+
+// Web Audio API for Sound Effects
+let audioContext;
+
+function initAudio() {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+}
+
+function playSound(frequency, duration) {
+    const oscillator = audioContext.createOscillator();
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+    oscillator.connect(audioContext.destination);
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + duration);
+}
+
+// Example usage:
+document.querySelector('.cta-button').addEventListener('click', () => {
+    if (!audioContext) initAudio();
+    playSound(440, 0.1); // Play a short beep
+});
+
+// WebRTC for Real-time Communication (simplified example)
+function initWebRTC() {
+    const localVideo = document.getElementById('localVideo');
+    const remoteVideo = document.getElementById('remoteVideo');
+    let localStream;
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        .then(stream => {
+            localVideo.srcObject = stream;
+            localStream = stream;
+            // Here you would set up peer connection and signaling
+        })
+        .catch(error => console.error('Error accessing media devices:', error));
+}
+
+// Call this function to initialize WebRTC features
+// initWebRTC();
+
+// Web Workers for Heavy Computations
+function initWebWorker() {
+    const worker = new Worker('worker.js');
+    worker.onmessage = function(e) {
+        console.log('Result from worker:', e.data);
+    };
+    worker.postMessage({ command: 'start', data: [1, 2, 3, 4, 5] });
+}
+
+// Call this function to start a web worker
+// initWebWorker();
+
+// IndexedDB for Client-side Storage
+let db;
+
+function initIndexedDB() {
+    const request = indexedDB.open('MyDatabase', 1);
+    request.onerror = event => console.error('IndexedDB error:', event.target.error);
+    request.onsuccess = event => {
+        db = event.target.result;
+        console.log('IndexedDB initialized successfully');
+    };
+    request.onupgradeneeded = event => {
+        db = event.target.result;
+        const objectStore = db.createObjectStore('customers', { keyPath: 'id' });
+        objectStore.createIndex('name', 'name', { unique: false });
+        objectStore.createIndex('email', 'email', { unique: true });
+    };
+}
+
+// Call this function to initialize IndexedDB
+// initIndexedDB();
+
+// WebSockets for Real-time Updates
+let socket;
+
+function initWebSocket() {
+    socket = new WebSocket('wss://your-websocket-server.com');
+    
+    socket.onopen = function(e) {
+        console.log('WebSocket connection established');
+    };
+
+    socket.onmessage = function(event) {
+        console.log('Message from server:', event.data);
+    };
+
+    socket.onclose = function(event) {
+        if (event.wasClean) {
+            console.log(`WebSocket connection closed cleanly, code=${event.code}, reason=${event.reason}`);
+        } else {
+            console.error('WebSocket connection died');
+        }
+    };
+
+    socket.onerror = function(error) {
+        console.error(`WebSocket error: ${error.message}`);
+    };
+}
+
+// Call this function to initialize WebSocket connection
+// initWebSocket();
+
+// Geolocation API
+function getUserLocation() {
+    if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                // You could use this to show nearby services or customize content
+            },
+            error => {
+                console.error('Geolocation error:', error);
+            }
+        );
+    } else {
+        console.log('Geolocation is not supported by this browser.');
+    }
+}
+
+// Call this function to get user's location
+// getUserLocation();
+
+// Push Notifications
+function initPushNotifications() {
+    if ('Notification' in window) {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                console.log('Notification permission granted');
+                // You can now send notifications
+            }
+        });
+    }
+}
+
+function sendNotification(title, options) {
+    if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification(title, options);
+    }
+}
+
+// Call this to initialize push notifications
+// initPushNotifications();
+
+// Example usage:
+// sendNotification('New Message', { body: 'You have a new message from a client!' });
+
+// Internationalization API
+const i18n = new Intl.DateTimeFormat('pt-BR', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+});
+
+function formatDate(date) {
+    return i18n.format(date);
+}
+
+// Example usage:
+console.log(formatDate(new Date())); // Outputs the current date in Brazilian Portuguese format
+
+// Web Animations API
+function animateElement(element) {
+    const keyframes = [
+        { transform: 'scale(1)', opacity: 1, offset: 0 },
+        { transform: 'scale(1.5)', opacity: 0.5, offset: 0.3 },
+        { transform: 'scale(0.5)', opacity: 0.5, offset: 0.6 },
+        { transform: 'scale(1)', opacity: 1, offset: 1 }
+    ];
+    
+    const options = {
+        duration: 2000,
+        iterations: Infinity
+    };
+
+    element.animate(keyframes
