@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cascavel Designer - Design Profissional</title>
-    <meta name="description" content="Cascavel Designer oferece serviços de design profissional para empresas. Qualidade excepcional e entrega pontual garantidas.">
+    <title>Cascavel Designer - Design Profissional Premiado</title>
+    <meta name="description" content="Cascavel Designer: Empresa de design premiada com mais de 4000 clientes satisfeitos. Qualidade excepcional e inovação em cada projeto.">
     <link rel="icon" href="cascavel.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <!-- Bibliotecas CSS -->
@@ -13,13 +13,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@material-ui/core@4.12.4/dist/css/material-ui.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/css/uikit.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@2.0.4/dist/motion-ui.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hover.css@2.3.2/css/hover-min.min.css">
 </head>
 <body>
     <header id="header" class="header">
         <nav class="nav-container">
             <div class="logo-container">
                 <img src="cascavel.png" alt="Cascavel Designer Logo" class="logo">
-                <h1>Cascavel Designer</h1>
+                <h1 class="text-2xl font-bold">Cascavel Designer</h1>
             </div>
             <button class="menu-toggle" aria-label="Toggle Menu">
                 <span></span>
@@ -27,172 +37,234 @@
                 <span></span>
             </button>
             <ul class="nav-menu">
-                <li><a href="#status">Status</a></li>
-                <li><a href="#acessar">Acessar</a></li>
-                <li><a href="#documentacao">Documentação</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="#status" class="hvr-underline-from-center">Status</a></li>
+                <li><a href="#acessar" class="hvr-underline-from-center">Acessar</a></li>
+                <li><a href="#documentacao" class="hvr-underline-from-center">Documentação</a></li>
+                <li><a href="#contato" class="hvr-underline-from-center">Contato</a></li>
             </ul>
             <div class="theme-toggle">
-                <button id="theme-toggle-btn" aria-label="Toggle Theme">
+                <button id="theme-toggle-btn" aria-label="Toggle Theme" class="uk-button uk-button-default">
                     <i class="fas fa-sun"></i>
                     <i class="fas fa-moon"></i>
                 </button>
             </div>
             <div class="font-size-control">
-                <button id="decrease-font" aria-label="Decrease Font Size">A-</button>
-                <button id="increase-font" aria-label="Increase Font Size">A+</button>
+                <button id="decrease-font" aria-label="Decrease Font Size" class="uk-button uk-button-default">A-</button>
+                <button id="increase-font" aria-label="Increase Font Size" class="uk-button uk-button-default">A+</button>
             </div>
         </nav>
         <div class="partner-logos">
             <img src="opulensys.png" alt="Opulensys Logo" class="partner-logo">
             <img src="cascavel.png" alt="Cascavel Designer Logo" class="partner-logo">
-            <h5><a href="caparceiria.html">Acessar Contrato De Transparência De Parceria</a></h5>
+            <h5><a href="caparceiria.html" class="hvr-grow">Acessar Contrato De Transparência De Parceria</a></h5>
         </div>
     </header>
 
     <main>
         <section id="hero" class="hero">
             <div class="hero-content">
-                <h2 class="animate__animated animate__fadeInDown">Design Profissional que Transforma Negócios</h2>
-                <p class="animate__animated animate__fadeInUp">Elevamos sua marca com designs inovadores e impactantes</p>
-                <a href="LoadAuth.html" class="cta-button animate__animated animate__bounceIn">Entre em Contato</a>
+                <h2 class="animate__animated animate__fadeInDown text-4xl font-bold mb-4">Design Profissional Premiado</h2>
+                <p class="animate__animated animate__fadeInUp text-xl mb-6">Transformando visões em realidade visual há mais de uma década</p>
+                <a href="LoadAuth.html" class="cta-button animate__animated animate__bounceIn hvr-pulse-grow">Solicite um Orçamento</a>
+            </div>
+        </section>
+
+        <section id="achievements" class="achievements bg-gray-100 py-16">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-8">Nosso Impacto em Números</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="achievement-item" data-aos="fade-up">
+                        <i class="fas fa-trophy text-4xl text-yellow-500 mb-4"></i>
+                        <h3 class="text-2xl font-semibold">20+ Prêmios</h3>
+                        <p>Reconhecimento internacional em design</p>
+                    </div>
+                    <div class="achievement-item" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-users text-4xl text-blue-500 mb-4"></i>
+                        <h3 class="text-2xl font-semibold">4000+ Clientes</h3>
+                        <p>Confiança de milhares de empresas</p>
+                    </div>
+                    <div class="achievement-item" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-star text-4xl text-green-500 mb-4"></i>
+                        <h3 class="text-2xl font-semibold">3700+ Avaliações</h3>
+                        <p>Excelência comprovada por nossos clientes</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="stats" class="stats">
-            <h2>Impulsionando o Crescimento do seu Negócio</h2>
+            <h2 class="text-3xl font-bold mb-8">Impulsionando o Crescimento do seu Negócio</h2>
             <div class="chart-container">
                 <canvas id="growthChart"></canvas>
             </div>
         </section>
 
-        <section id="services" class="services">
-            <h2>Nossos Serviços</h2>
-            <div class="service-grid">
-                <div class="service-item" data-aos="fade-up">
-                    <i class="fas fa-paint-brush"></i>
-                    <h3>Design Gráfico</h3>
-                    <p>Criações visuais impactantes para sua marca</p>
+        <section id="services" class="services bg-white py-16">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold mb-12 text-center">Nossos Serviços Premium</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="service-item bg-blue-50 p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105" data-aos="fade-up">
+                        <i class="fas fa-paint-brush text-4xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Design Gráfico</h3>
+                        <p class="text-gray-600">Criações visuais impactantes para sua marca</p>
+                    </div>
+                    <div class="service-item bg-green-50 p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-desktop text-4xl text-green-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Web Design</h3>
+                        <p class="text-gray-600">Sites modernos e responsivos</p>
+                    </div>
+                    <div class="service-item bg-purple-50 p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-mobile-alt text-4xl text-purple-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Design de Apps</h3>
+                        <p class="text-gray-600">Interfaces intuitivas para aplicativos móveis</p>
+                    </div>
+                    <div class="service-item bg-red-50 p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-video text-4xl text-red-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Motion Design</h3>
+                        <p class="text-gray-600">Animações e vídeos que contam sua história</p>
+                    </div>
                 </div>
-                <div class="service-item" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-desktop"></i>
-                    <h3>Web Design</h3>
-                    <p>Sites modernos e responsivos</p>
-                </div>
-                <div class="service-item" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Design de Apps</h3>
-                    <p>Interfaces intuitivas para aplicativos móveis</p>
-                </div>
-                <div class="service-item" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fas fa-video"></i>
-                    <h3>Motion Design</h3>
-                    <p>Animações e vídeos que contam sua história</p>
+                <div class="text-center mt-12">
+                    <a href="SystemAnoEnc.html" class="cta-button hvr-bounce-to-right">Encomendar Agora</a>
+                    <p class="mt-4">Ou entre em contato: <a href="mailto:cascaveldesingner@gmail.com" class="text-blue-500 hover:underline">cascaveldesingner@gmail.com</a></p>
                 </div>
             </div>
-            <a href="SystemAnoEnc.html" class="cta-button">Encomendar Agora</a>
-            <p>Ou entre em contato: <a href="mailto:cascaveldesingner@gmail.com">cascaveldesingner@gmail.com</a></p>
         </section>
 
-        <section id="testimonials" class="testimonials">
-            <h2>O que Nossos Clientes Dizem</h2>
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <!-- Testimonials will be dynamically added here -->
+        <section id="testimonials" class="testimonials bg-gray-100 py-16">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold mb-12 text-center">O que Nossos Clientes Dizem</h2>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <!-- Testimonials will be dynamically added here -->
+                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                <div class="swiper-pagination"></div>
             </div>
         </section>
 
-        <section id="rating" class="rating">
-            <h2>Avaliação dos Clientes</h2>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <p>4.5 estrelas - Avaliado por mais de 100 clientes</p>
-            <a href="LoadAuth.html" class="cta-button">Encomendar Serviços</a>
-        </section>
-
-        <section id="portfolio" class="portfolio">
-            <h2>Nossa Galeria</h2>
-            <div class="gallery-container">
-                <img src="art1.png" alt="Arte 1" class="gallery-item" data-full-gallery="art">
-                <!-- More images will be dynamically loaded -->
-            </div>
-            <button id="expand-gallery" class="cta-button">Ver Mais</button>
-            <a href="SystemAnoEnc.html" class="cta-button">Encomendar Serviços</a>
-        </section>
-
-        <section id="contact" class="contact">
-            <h2>Entre em Contato</h2>
-            <form id="contact-form">
-                <input type="text" name="name" placeholder="Nome Completo" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="tel" name="phone" placeholder="Número de Telefone" required>
-                <input type="text" name="subject" placeholder="Assunto" required>
-                <textarea name="message" placeholder="Mensagem" required></textarea>
-                <button type="submit" class="cta-button">Enviar</button>
-            </form>
-        </section>
-
-        <section id="design-quotes" class="design-quotes">
-            <h2>Inspirações de Design</h2>
-            <div class="quote-slider">
-                <!-- Quotes will be dynamically added here -->
+        <section id="rating" class="rating bg-white py-16">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-8">Avaliação dos Clientes</h2>
+                <div class="stars text-4xl text-yellow-400 mb-4">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="text-xl mb-8">4.5 estrelas - Avaliado por mais de 3700 clientes</p>
+                <a href="LoadAuth.html" class="cta-button hvr-float-shadow">Encomendar Serviços</a>
             </div>
         </section>
 
-        <section id="impact" class="impact">
-            <h2>O Impacto do Nosso Design</h2>
-            <div class="chart-container">
-                <canvas id="impactChart"></canvas>
+        <section id="portfolio" class="portfolio bg-gray-100 py-16">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold mb-12 text-center">Nossa Galeria de Projetos</h2>
+                <div class="gallery-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <img src="art1.png" alt="Arte 1" class="gallery-item rounded-lg shadow-lg transition-transform duration-300 hover:scale-105" data-full-gallery="art">
+                    <!-- More images will be dynamically loaded -->
+                </div>
+                <div class="text-center mt-8">
+                    <button id="expand-gallery" class="cta-button hvr-grow">Ver Mais</button>
+                    <a href="SystemAnoEnc.html" class="cta-button ml-4 hvr-grow">Encomendar Serviços</a>
+                </div>
             </div>
         </section>
 
-        <section id="social" class="social">
-            <h2>Conecte-se Conosco</h2>
-            <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                <a href="#" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
+        <section id="contact" class="contact bg-white py-16">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold mb-12 text-center">Entre em Contato</h2>
+                <form id="contact-form" class="max-w-lg mx-auto">
+                    <div class="mb-4">
+                        <input type="text" name="name" placeholder="Nome Completo" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <input type="email" name="email" placeholder="Email" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <input type="tel" name="phone" placeholder="Número de Telefone" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <input type="text" name="subject" placeholder="Assunto" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <textarea name="message" placeholder="Mensagem" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 h-32"></textarea>
+                    </div>
+                <button type="submit" class="cta-button w-full hvr-ripple-out">Enviar</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="design-quotes" class="design-quotes bg-gray-100 py-16">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold mb-12 text-center">Inspirações de Design</h2>
+                <div class="quote-slider swiper-container">
+                    <div class="swiper-wrapper">
+                        <!-- Quotes will be dynamically added here -->
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="impact bg-white py-16">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold mb-12 text-center">O Impacto do Nosso Design</h2>
+                <div class="chart-container">
+                    <canvas id="impactChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="social" class="social bg-gray-100 py-16">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-8">Conecte-se Conosco</h2>
+                <div class="social-links flex justify-center space-x-4">
+                    <a href="#" class="social-link bg-green-500 text-white px-6 py-3 rounded-full hover:bg-green-600 transition-colors duration-300">
+                        <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                    </a>
+                    <a href="#" class="social-link bg-purple-500 text-white px-6 py-3 rounded-full hover:bg-purple-600 transition-colors duration-300">
+                        <i class="fab fa-instagram mr-2"></i> Instagram
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="cascavel.png" alt="Cascavel Designer Logo" class="logo">
-                <h3>Cascavel Designer</h3>
+    <footer class="footer bg-gray-800 text-white py-12">
+        <div class="container mx-auto">
+            <div class="footer-content grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="footer-logo">
+                    <img src="cascavel.png" alt="Cascavel Designer Logo" class="logo w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold">Cascavel Designer</h3>
+                </div>
+                <div class="footer-links">
+                    <h4 class="text-lg font-semibold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#hero" class="hover:text-blue-300 transition-colors duration-300">Início</a></li>
+                        <li><a href="#services" class="hover:text-blue-300 transition-colors duration-300">Serviços</a></li>
+                        <li><a href="#portfolio" class="hover:text-blue-300 transition-colors duration-300">Portfólio</a></li>
+                        <li><a href="#contact" class="hover:text-blue-300 transition-colors duration-300">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4 class="text-lg font-semibold mb-4">Contato</h4>
+                    <p>Email: cascaveldesingner@gmail.com</p>
+                    <p>Telefone: (00) 1234-5678</p>
+                </div>
             </div>
-            <div class="footer-links">
-                <h4>Links Rápidos</h4>
-                <ul>
-                    <li><a href="#hero">Início</a></li>
-                    <li><a href="#services">Serviços</a></li>
-                    <li><a href="#portfolio">Portfólio</a></li>
-                    <li><a href="#contact">Contato</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h4>Contato</h4>
-                <p>Email: cascaveldesingner@gmail.com</p>
-                <p>Telefone: (00) 1234-5678</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>Desenvolvido por: <img src="opulensys.png" alt="Opulensys Logo" class="developer-logo"></p>
-            <div class="language-switch">
-                <button id="lang-pt" class="active">PT</button>
-                <button id="lang-en">EN</button>
-            </div>
-            <p class="version">Versão 1.0.1 Visual Opulensys - Empresarial Premium</p>
-            <div class="security-info">
-                <p>Este site utiliza a segurança da Google</p>
-                <img src="https://www.gstatic.com/devrel-devsite/prod/v2f6fb68338062e7c16672db62c4ab042dcb9bfbacf2fa51b6959426b203a4d8a/developers/images/lockup-developers.svg" alt="Google Web Security" class="google-security">
+            <div class="footer-bottom mt-8 pt-8 border-t border-gray-700 text-center">
+                <p>Desenvolvido por: <img src="opulensys.png" alt="Opulensys Logo" class="developer-logo inline-block h-8 ml-2"></p>
+                <div class="language-switch mt-4">
+                    <button id="lang-pt" class="bg-blue-500 text-white px-3 py-1 rounded mr-2 active">PT</button>
+                    <button id="lang-en" class="bg-gray-500 text-white px-3 py-1 rounded">EN</button>
+                </div>
+                <p class="version mt-4 text-sm">Versão 1.0.1 Visual Opulensys - Empresarial Premium</p>
+                <div class="security-info mt-4">
+                    <p class="text-sm">Este site utiliza a segurança da Google</p>
+                    <img src="https://www.gstatic.com/devrel-devsite/prod/v2f6fb68338062e7c16672db62c4ab042dcb9bfbacf2fa51b6959426b203a4d8a/developers/images/lockup-developers.svg" alt="Google Web Security" class="google-security inline-block h-8 mt-2">
+                </div>
             </div>
         </div>
     </footer>
@@ -202,6 +274,18 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@material-ui/core@4.12.4/umd/material-ui.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/js/foundation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.24/dist/js/uikit-icons.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/scrollmagic@2.0.8/scrollmagic/uncompressed/ScrollMagic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/scrollmagic@2.0.8/scrollmagic/uncompressed/plugins/animation.gsap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
     <script type="module" src="app.js"></script>
 </body>
-                                                                   </html>
+</html>
