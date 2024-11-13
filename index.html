@@ -1,152 +1,426 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentação - Projeto Paróquia Matriz de Cascavel</title>
-    
-    <!-- CSS Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+    <title>Documentação do Projeto - Paróquia Matriz de Cascavel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --accent-color: #ff006e;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
         }
+
         .container {
-            max-width: 960px;
-            padding-top: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        h1, h2, h3 {
-            color: #0056b3;
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
         }
-        .section-header {
-            margin-top: 50px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #0056b3;
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
-        .objectives-list {
-            padding-left: 0;
+
+        nav {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
         }
-        .objective-item {
+
+        nav ul {
             list-style-type: none;
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
         }
-        .objective-item::before {
-            content: "\f111";
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            color: #0056b3;
-            position: absolute;
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        main {
+            padding: 3rem 0;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .icon-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 2rem;
+        }
+
+        .icon-item {
+            text-align: center;
+            margin: 1rem;
+            width: 120px;
+        }
+
+        .icon-item i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .authentication {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .authentication img {
+            max-width: 200px;
+            margin-bottom: 1rem;
+        }
+
+        .authentication a {
+            display: inline-block;
+            background-color: white;
+            color: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .authentication a:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .client-input {
+            background-color: #f0f0f0;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .client-input form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .client-input input,
+        .client-input textarea {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .client-input button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .client-input button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+
+        #loading-screen {
+            position: fixed;
+            top: 0;
             left: 0;
-            top: 3px;
-            font-size: 12px;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
         }
-        .code-block {
-            background: #272822;
-            padding: 20px;
-            border-radius: 5px;
-            color: #f8f8f2;
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--primary-color);
+            border-top: 5px solid var(--secondary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .icon-list {
+                justify-content: center;
+            }
         }
     </style>
 </head>
-<body data-bs-spy="scroll" data-bs-target="#navbar-example" data-bs-offset="50">
+<body>
+    <div id="loading-screen">
+        <div class="spinner"></div>
+    </div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="navbar-example">
+    <header>
         <div class="container">
-            <a class="navbar-brand" href="#">Opulensys - Documentação</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#introducao">Introdução</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#justificativa">Justificativa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#objetivos">Objetivos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#metodologia">Metodologia</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#cronograma">Cronograma</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#resultados">Resultados Esperados</a>
-                    </li>
+            <h1>Documentação do Projeto - Paróquia Matriz de Cascavel</h1>
+            <nav>
+                <ul>
+                    <li><a href="#introducao">Introdução</a></li>
+                    <li><a href="#justificativa">Justificativa</a></li>
+                    <li><a href="#objetivos">Objetivos</a></li>
+                    <li><a href="#metodologia">Metodologia</a></li>
+                    <li><a href="#recursos">Recursos</a></li>
+                    <li><a href="#cronograma">Cronograma</a></li>
+                    <li><a href="#orcamento">Orçamento</a></li>
+                    <li><a href="#resultados">Resultados Esperados</a></li>
                 </ul>
-            </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Content -->
-    <div class="container">
-        <section id="introducao" class="mt-5 pt-5" data-aos="fade-up">
-            <h1 class="section-header">Introdução</h1>
-            <p>A Opulensys, através do programador web Rafael Silva Inacio, propõe a criação de um site dinâmico e estático para a Paróquia Matriz de Cascavel, no Ceará...</p>
+    <main class="container">
+        <section id="introducao">
+            <h2>1. Introdução</h2>
+            <p>A Opulensys, empresa especializada em soluções tecnológicas e design digital, apresenta um projeto inovador e gratuito de desenvolvimento de site para a Paróquia Matriz de Cascavel, Ceará. Conduzido pelo programador web Rafael Silva Inacio, este projeto visa criar uma plataforma digital completa, integrando conteúdo estático e dinâmico.</p>
+            <p>Nossa proposta é proporcionar um canal de comunicação direto, funcional e intuitivo entre a paróquia e seus fiéis, superando as limitações atuais do uso do Linktree. Comprometemo-nos a disponibilizar uma ferramenta moderna que reflita a identidade e as atividades da paróquia, aumentando a interação com a comunidade local e facilitando o acesso a informações essenciais.</p>
         </section>
 
-        <section id="justificativa" data-aos="fade-up">
-            <h2 class="section-header">Justificativa</h2>
-            <p>A motivação para o desenvolvimento deste projeto surgiu da necessidade de oferecer um canal de comunicação mais completo e eficaz...</p>
+        <section id="justificativa">
+            <h2>2. Justificativa</h2>
+            <p>A criação do site da Paróquia Matriz de Cascavel é motivada pela necessidade de uma comunicação mais efetiva e acessível com a comunidade. Atualmente, a paróquia utiliza apenas o Linktree para divulgar informações, o que limita a apresentação de conteúdo e dificulta a atualização de novidades e comunicados.</p>
+            <p>Acreditamos que a implementação de um site próprio possibilitará uma comunicação mais clara, dinâmica e organizada, essencial para a paróquia expandir sua presença digital e reforçar seu papel na vida dos fiéis. O site permitirá que a comunidade acesse facilmente os horários das missas, eventos, comunicados e outros conteúdos relevantes, contribuindo para uma experiência digital que atenda às demandas atuais e fortaleça a missão da paróquia.</p>
         </section>
 
-        <section id="objetivos" data-aos="fade-up">
-            <h2 class="section-header">Objetivos</h2>
-            <ul class="objectives-list">
-                <li class="objective-item">Aumentar a visibilidade da Paróquia Matriz de Cascavel...</li>
-                <li class="objective-item">Centralizar informações importantes...</li>
-                <!-- List continues for 30+ objectives -->
+        <section id="objetivos">
+            <h2>3. Objetivos</h2>
+            <div class="icon-list">
+                <div class="icon-item">
+                    <i class="fas fa-globe"></i>
+                    <p>Aumentar a visibilidade digital</p>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <p>Centralizar informações importantes</p>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-comments"></i>
+                    <p>Facilitar a comunicação</p>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-universal-access"></i>
+                    <p>Oferecer plataforma acessível</p>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-users"></i>
+                    <p>Estimular o engajamento dos fiéis</p>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-edit"></i>
+                    <p>Permitir atualizações independentes</p>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-id-card"></i>
+                    <p>Fortalecer a identidade digital</p>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-book"></i>
+                    <p>Disponibilizar recursos espirituais</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="metodologia">
+            <h2>4. Metodologia</h2>
+            <p>Nossa metodologia é estruturada para garantir máxima eficiência e qualidade no desenvolvimento do site:</p>
+            <ol>
+                <li>Confirmação e Planejamento Inicial</li>
+                <li>Recebimento dos Materiais</li>
+                <li>Coleta de Informações (10 dias)</li>
+                <li>Desenvolvimento Técnico</li>
+            </ol>
+        </section>
+
+        <section id="recursos">
+            <h2>5. Recursos Necessários</h2>
+            <p>Utilizaremos nossa infraestrutura de sistemas da Opulensys para garantir a segurança e o bom desempenho do site. Solicitamos à Paróquia Matriz de Cascavel:</p>
+            <ul>
+                <li>Logotipo da paróquia</li>
+                <li>Documentação histórica e informações institucionais</li>
+                <li>Preferências específicas sobre funcionalidades e layout</li>
             </ul>
         </section>
 
-        <section id="metodologia" data-aos="fade-up">
-            <h2 class="section-header">Metodologia</h2>
-            <p>Assim que o projeto for aprovado, iniciaremos a coleta de informações e recursos gráficos da paróquia...</p>
+        <section id="cronograma">
+            <h2>6. Cronograma</h2>
+            <ul>
+                <li>Dias 0 a 10 – Coleta de Dados e Materiais da Paróquia</li>
+                <li>Dias 10 a 20 – Desenvolvimento do Design da Interface (UI)</li>
+                <li>Dias 20 a 30 – Implementação de Sistemas Internos (Back-End)</li>
+                <li>Dias 30 a 40 – Inserção de Conteúdo e Serviços</li>
+                <li>Dias 40 a 50 – Implementação da Interface do Usuário (Front-End)</li>
+            </ul>
+            <p>Será adicionado um prazo adicional de 20 dias ao tempo estimado de entrega para garantir um trabalho detalhado e sem imprevistos.</p>
         </section>
 
-        <section id="cronograma" data-aos="fade-up">
-            <h2 class="section-header">Cronograma</h2>
-            <div class="code-block">
-                <pre><code class="language-html">
-10 - Coletando Dados
-20 - Realizaremos Do Designer UI
-30 - Implementação De Sistemas
-40 - Adicionando Os Serviços
-50 - Implementação De UI (Front-End)
-                </code></pre>
-            </div>
+        <section id="orcamento">
+            <h2>7. Orçamento</h2>
+            <p>Este projeto não terá custos iniciais para a Paróquia Matriz de Cascavel. Durante os primeiros cinco meses, não será cobrado nada pela manutenção ou atualizações necessárias, como uma contribuição da Opulensys para a comunidade. Após esse período, as condições de manutenção podem ser ajustadas conforme as necessidades da paróquia.</p>
         </section>
 
-        <section id="resultados" data-aos="fade-up">
-            <h2 class="section-header">Resultados Esperados</h2>
-            <p>Com o lançamento deste site, esperamos alcançar resultados que impactem positivamente a Paróquia Matriz de Cascavel...</p>
+        <section id="resultados">
+            <h2>8. Resultados Esperados</h2>
+            <ul>
+                <li>Melhoria na comunicação com a comunidade</li>
+                <li>Aumento do engajamento dos fiéis</li>
+                <li>Maior visibilidade para visitantes e novos membros</li>
+                <li>Economia de tempo e recursos</li>
+                <li>Facilidade na gestão de conteúdos</li>
+                <li>Preservação da história da paróquia</li>
+                <li>Fortalecimento da identidade digital</li>
+                <li>Maior integração com as redes sociais</li>
+            </ul>
         </section>
-    </div>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
-    <script>
-        AOS.init();
+        <section class="authentication">
+            <h2>Autenticidade do Projeto</h2>
+            <img src="autenticidade.png" alt="Selo de Autenticidade">
+            <p>Este projeto é oficialmente autorizado e autenticado pela Opulensys.</p>
+            <a href="autenticidade.png" download>Baixar Certificado de Autenticidade</a>
+        </section>
+
+        <section class="client-input">
+            <h2>Adicionar Novo Sistema</h2>
+            <form id="system-form">
+                <input type="text" id="system-title" placeholder="Título do Sistema" required>
+                <textarea id="system-description" placeholder="Descrição detalhada do sistema" required></textarea>
+                <h6>Para enviar os designs necessários para o sistema, entre em contato com nossa equipe.</h6>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Opulensys. Todos os direitos reservados.</p>
+    </footer>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB0Je06Cc3Tzq6fqpDICDt0aGXqRzzhmhI",
+            authDomain: "opulensys-1150c.firebaseapp.com",
+            databaseURL: "https://opulensys-1150c-default-rtdb.firebaseio.com",
+            projectId: "opulensys-1150c",
+            storageBucket: "opulensys-1150c.appspot.com",
+            messagingSenderId: "566236902104",
+            appId: "1:566236902104:web:76a5cc9d203877989d5dad",
+            measurementId: "G-FD893MSTS3"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        document.getElementById('system-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('system-title').value;
+            const description = document.getElementById('system-description').value;
+
+            push(ref(database, 'systems'), {
+                title: title,
+                description: description,
+                timestamp: Date.now()
+            }).then(() => {
+                alert('Sistema adicionado com sucesso!');
+                document.getElementById('system-form').reset();
+            }).catch((error) => {
+                console.error('Erro ao adicionar sistema:', error);
+                alert('Ocorreu um erro ao adicionar o sistema. Por favor, tente novamente.');
+            });
+        });
+
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading-screen').style.display = 'none';
+            }, 1000);
+        });
     </script>
 </body>
 </html>
