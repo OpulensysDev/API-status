@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentação do Projeto - Paróquia Matriz de Cascavel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://unpkg.com/framer-motion@10.12.16/dist/framer-motion.js"></script>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
     <style>
         :root {
             --primary-color: #3a86ff;
@@ -13,6 +21,8 @@
             --accent-color: #ff006e;
             --background-color: #f8f9fa;
             --text-color: #333;
+            --heading-font: 'Playfair Display', serif;
+            --body-font: 'Roboto', sans-serif;
         }
 
         * {
@@ -22,7 +32,7 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: var(--body-font);
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--background-color);
@@ -42,6 +52,10 @@
             text-align: center;
         }
 
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+        }
+
         h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
@@ -56,10 +70,11 @@
             list-style-type: none;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         nav ul li {
-            margin: 0 1rem;
+            margin: 0.5rem 1rem;
         }
 
         nav ul li a {
@@ -83,6 +98,12 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
         h2 {
@@ -106,6 +127,11 @@
             text-align: center;
             margin: 1rem;
             width: 120px;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-item:hover {
+            transform: scale(1.05);
         }
 
         .icon-item i {
@@ -135,12 +161,13 @@
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .authentication a:hover {
             background-color: var(--accent-color);
             color: white;
+            transform: scale(1.05);
         }
 
         .client-input {
@@ -160,6 +187,13 @@
             padding: 0.5rem;
             border: 1px solid #ccc;
             border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        .client-input input:focus,
+        .client-input textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
         }
 
         .client-input button {
@@ -169,11 +203,12 @@
             padding: 0.5rem 1rem;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .client-input button:hover {
             background-color: var(--secondary-color);
+            transform: translateY(-2px);
         }
 
         footer {
@@ -197,18 +232,86 @@
             z-index: 9999;
         }
 
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--primary-color);
-            border-top: 5px solid var(--secondary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .chart-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid var(--accent-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .right::after {
+            left: -16px;
+        }
+
+        .content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 15px;
+            }
+
+            .right {
+                left: 0%;
+            }
         }
 
         @media (max-width: 768px) {
@@ -229,7 +332,7 @@
 </head>
 <body>
     <div id="loading-screen">
-        <div class="spinner"></div>
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_yyytgjwe.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
     </div>
 
     <header>
@@ -245,25 +348,27 @@
                     <li><a href="#cronograma">Cronograma</a></li>
                     <li><a href="#orcamento">Orçamento</a></li>
                     <li><a href="#resultados">Resultados Esperados</a></li>
+                    <li><a href="#impacto">Impacto</a></li>
+                    <li><a href="#tecnologias">Tecnologias</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <section id="introducao">
+        <section id="introducao" data-aos="fade-up">
             <h2>1. Introdução</h2>
             <p>A Opulensys, empresa especializada em soluções tecnológicas e design digital, apresenta um projeto inovador e gratuito de desenvolvimento de site para a Paróquia Matriz de Cascavel, Ceará. Conduzido pelo programador web Rafael Silva Inacio, este projeto visa criar uma plataforma digital completa, integrando conteúdo estático e dinâmico.</p>
             <p>Nossa proposta é proporcionar um canal de comunicação direto, funcional e intuitivo entre a paróquia e seus fiéis, superando as limitações atuais do uso do Linktree. Comprometemo-nos a disponibilizar uma ferramenta moderna que reflita a identidade e as atividades da paróquia, aumentando a interação com a comunidade local e facilitando o acesso a informações essenciais.</p>
         </section>
 
-        <section id="justificativa">
+        <section id="justificativa" data-aos="fade-up">
             <h2>2. Justificativa</h2>
             <p>A criação do site da Paróquia Matriz de Cascavel é motivada pela necessidade de uma comunicação mais efetiva e acessível com a comunidade. Atualmente, a paróquia utiliza apenas o Linktree para divulgar informações, o que limita a apresentação de conteúdo e dificulta a atualização de novidades e comunicados.</p>
             <p>Acreditamos que a implementação de um site próprio possibilitará uma comunicação mais clara, dinâmica e organizada, essencial para a paróquia expandir sua presença digital e reforçar seu papel na vida dos fiéis. O site permitirá que a comunidade acesse facilmente os horários das missas, eventos, comunicados e outros conteúdos relevantes, contribuindo para uma experiência digital que atenda às demandas atuais e fortaleça a missão da paróquia.</p>
         </section>
 
-        <section id="objetivos">
+        <section id="objetivos" data-aos="fade-up">
             <h2>3. Objetivos</h2>
             <div class="icon-list">
                 <div class="icon-item">
@@ -301,18 +406,38 @@
             </div>
         </section>
 
-        <section id="metodologia">
+        <section id="metodologia" data-aos="fade-up">
             <h2>4. Metodologia</h2>
             <p>Nossa metodologia é estruturada para garantir máxima eficiência e qualidade no desenvolvimento do site:</p>
-            <ol>
-                <li>Confirmação e Planejamento Inicial</li>
-                <li>Recebimento dos Materiais</li>
-                <li>Coleta de Informações (10 dias)</li>
-                <li>Desenvolvimento Técnico</li>
-            </ol>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="content">
+                        <h3>Fase 1</h3>
+                        <p>Confirmação e Planejamento Inicial</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="content">
+                        <h3>Fase 2</h3>
+                        <p>Recebimento dos Materiais</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="content">
+                        <h3>Fase 3</h3>
+                        <p>Coleta de Informações (10 dias)</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="content">
+                        <h3>Fase 4</h3>
+                        <p>Desenvolvimento Técnico</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="recursos">
+        <section id="recursos" data-aos="fade-up">
             <h2>5. Recursos Necessários</h2>
             <p>Utilizaremos nossa infraestrutura de sistemas da Opulensys para garantir a segurança e o bom desempenho do site. Solicitamos à Paróquia Matriz de Cascavel:</p>
             <ul>
@@ -322,24 +447,19 @@
             </ul>
         </section>
 
-        <section id="cronograma">
+        <section id="cronograma" data-aos="fade-up">
             <h2>6. Cronograma</h2>
-            <ul>
-                <li>Dias 0 a 10 – Coleta de Dados e Materiais da Paróquia</li>
-                <li>Dias 10 a 20 – Desenvolvimento do Design da Interface (UI)</li>
-                <li>Dias 20 a 30 – Implementação de Sistemas Internos (Back-End)</li>
-                <li>Dias 30 a 40 – Inserção de Conteúdo e Serviços</li>
-                <li>Dias 40 a 50 – Implementação da Interface do Usuário (Front-End)</li>
-            </ul>
-            <p>Será adicionado um prazo adicional de 20 dias ao tempo estimado de entrega para garantir um trabalho detalhado e sem imprevistos.</p>
+            <div class="chart-container">
+                <canvas id="cronogramaChart"></canvas>
+            </div>
         </section>
 
-        <section id="orcamento">
+        <section id="orcamento" data-aos="fade-up">
             <h2>7. Orçamento</h2>
             <p>Este projeto não terá custos iniciais para a Paróquia Matriz de Cascavel. Durante os primeiros cinco meses, não será cobrado nada pela manutenção ou atualizações necessárias, como uma contribuição da Opulensys para a comunidade. Após esse período, as condições de manutenção podem ser ajustadas conforme as necessidades da paróquia.</p>
         </section>
 
-        <section id="resultados">
+        <section id="resultados" data-aos="fade-up">
             <h2>8. Resultados Esperados</h2>
             <ul>
                 <li>Melhoria na comunicação com a comunidade</li>
@@ -353,14 +473,26 @@
             </ul>
         </section>
 
-        <section class="authentication">
+        <section id="impacto" data-aos="fade-up">
+            <h2>9. Impacto na Paróquia</h2>
+            <div class="chart-container">
+                <canvas id="impactoChart"></canvas>
+            </div>
+        </section>
+
+        <section id="tecnologias" data-aos="fade-up">
+            <h2>10. Tecnologias Utilizadas</h2>
+            <div id="tech-stack"></div>
+        </section>
+
+        <section class="authentication" data-aos="fade-up">
             <h2>Autenticidade do Projeto</h2>
             <img src="autenticidade.png" alt="Selo de Autenticidade">
             <p>Este projeto é oficialmente autorizado e autenticado pela Opulensys.</p>
             <a href="autenticidade.png" download>Baixar Certificado de Autenticidade</a>
         </section>
 
-        <section class="client-input">
+        <section class="client-input" data-aos="fade-up">
             <h2>Adicionar Novo Sistema</h2>
             <form id="system-form">
                 <input type="text" id="system-title" placeholder="Título do Sistema" required>
@@ -419,8 +551,136 @@
         window.addEventListener('load', function() {
             setTimeout(function() {
                 document.getElementById('loading-screen').style.display = 'none';
-            }, 1000);
+            }, 2000);
         });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Cronograma Chart
+        const ctxCronograma = document.getElementById('cronogramaChart').getContext('2d');
+        new Chart(ctxCronograma, {
+            type: 'gantt',
+            data: {
+                datasets: [{
+                    data: [
+                        {x: 'Coleta de Dados', y: [new Date(2023, 5, 1), new Date(2023, 5, 10)]},
+                        {x: 'Design UI', y: [new Date(2023, 5, 11), new Date(2023, 5, 20)]},
+                        {x: 'Back-End', y: [new Date(2023, 5, 21), new Date(2023, 5, 30)]},
+                        {x: 'Conteúdo', y: [new Date(2023, 6, 1), new Date(2023, 6, 10)]},
+                        {x: 'Front-End', y: [new Date(2023, 6, 11), new Date(2023, 6, 20)]}
+                    ]
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'day'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Impacto Chart
+        const ctxImpacto = document.getElementById('impactoChart').getContext('2d');
+        new Chart(ctxImpacto, {
+            type: 'radar',
+            data: {
+                labels: ['Engajamento', 'Visibilidade', 'Comunicação', 'Eficiência', 'Modernização'],
+                datasets: [{
+                    label: 'Antes do Site',
+                    data: [30, 40, 35, 50, 20],
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)'
+                }, {
+                    label: 'Depois do Site',
+                    data: [80, 90, 85, 95, 90],
+                    fill: true,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    pointBackgroundColor: 'rgb(54, 162, 235)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(54, 162, 235)'
+                }]
+            },
+            options: {
+                elements: {
+                    line: {
+                        borderWidth: 3
+                    }
+                }
+            }
+        });
+
+        // Tech Stack
+        const techStack = [
+            { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+            { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg' },
+            { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
+            { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+            { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
+            { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+            { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg' },
+            { name: 'GraphQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg' },
+        ];
+
+        const techStackContainer = document.getElementById('tech-stack');
+        techStack.forEach(tech => {
+            const techElement = document.createElement('div');
+            techElement.className = 'tech-item';
+            techElement.innerHTML = `
+                <img src="${tech.icon}" alt="${tech.name}" width="50" height="50">
+                <p>${tech.name}</p>
+            `;
+            techStackContainer.appendChild(techElement);
+        });
+    </script>
+
+    <script type="text/babel">
+        const TechStack = () => {
+            const [techs, setTechs] = React.useState([]);
+
+            React.useEffect(() => {
+                // Simulating an API call
+                setTimeout(() => {
+                    setTechs([
+                        { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+                        { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg' },
+                        { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
+                        { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+                        { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
+                        { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+                        { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg' },
+                        { name: 'GraphQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg' },
+                    ]);
+                }, 1000);
+            }, []);
+
+            return (
+                <div className="tech-stack">
+                    {techs.map((tech, index) => (
+                        <div key={index} className="tech-item" style={{display: 'inline-block', margin: '10px', textAlign: 'center'}}>
+                            <img src={tech.icon} alt={tech.name} width="50" height="50" />
+                            <p>{tech.name}</p>
+                        </div>
+                    ))}
+                </div>
+            );
+        };
+
+        ReactDOM.render(<TechStack />, document.getElementById('tech-stack'));
     </script>
 </body>
 </html>
