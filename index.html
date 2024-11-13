@@ -3,250 +3,607 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paróquia Matriz de Cascavel</title>
+    <title>Documentação do Site da Paróquia Matriz de Cascavel</title>
+    
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tippy.js@6.3.7/dist/tippy.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.5.1/dist/nouislider.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8.4.5/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@5.3.9/dist/simplebar.min.css">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --background-color: #f4f4f4;
         }
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-color);
+            background-color: var(--background-color);
         }
+
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
+
         header {
-            background: linear-gradient(to right, #1e3c72, #2a5298);
-            color: white;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
             text-align: center;
-            padding: 20px 0;
-            margin-bottom: 20px;
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
         nav {
-            background-color: #f8f9fa;
-            padding: 10px 0;
-            margin-bottom: 20px;
+            background-color: #333;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
+
         nav ul {
             list-style-type: none;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
         }
+
         nav ul li {
-            margin: 0 15px;
+            margin: 0 1rem;
         }
+
         nav ul li a {
+            color: #fff;
             text-decoration: none;
-            color: #333;
             font-weight: bold;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
         }
+
         nav ul li a:hover {
-            color: #1e3c72;
+            color: var(--accent-color);
+            transform: translateY(-2px);
         }
+
         section {
-            background-color: white;
-            padding: 30px;
-            margin-bottom: 30px;
+            background-color: #fff;
+            margin: 2rem 0;
+            padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        h1, h2 {
-            color: #1e3c72;
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
+
         h2 {
-            border-bottom: 2px solid #1e3c72;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
         }
-        .btn {
-            display: inline-block;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
         }
-        .btn:hover {
-            background: linear-gradient(to right, #2a5298, #1e3c72);
-        }
-        .icon-grid {
+
+        .icon-section {
             display: flex;
-            justify-content: space-around;
             flex-wrap: wrap;
-            margin-top: 20px;
+            justify-content: space-around;
+            margin-top: 2rem;
         }
+
         .icon-item {
             text-align: center;
-            margin: 10px;
+            margin: 1rem;
+            width: 150px;
             transition: transform 0.3s ease;
         }
+
         .icon-item:hover {
             transform: scale(1.1);
         }
-        .icon {
-            font-size: 2em;
-            color: #1e3c72;
+
+        .icon-item i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
         }
-        #loading-overlay {
+
+        .authenticity {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #e8f5e9;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .authenticity img {
+            max-width: 200px;
+            margin-right: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input, form textarea {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        form input:focus, form textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        form button {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        #loading {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
+            background-color: rgba(0, 0, 0, 0.5);
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
+
         .spinner {
             border: 5px solid #f3f3f3;
-            border-top: 5px solid #1e3c72;
+            border-top: 5px solid var(--primary-color);
             border-radius: 50%;
             width: 50px;
             height: 50px;
             animation: spin 1s linear infinite;
         }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid var(--accent-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+
+        .right::after {
+            left: -16px;
+        }
+
+        .content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+
+            .left::after, .right::after {
+                left: 15px;
+            }
+
+            .right {
+                left: 0%;
+            }
+        }
+
+        .mind-map {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .mind-map-node {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .mind-map-child {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .architecture-diagram {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
         @media (max-width: 768px) {
             nav ul {
                 flex-direction: column;
                 align-items: center;
             }
+
             nav ul li {
-                margin: 10px 0;
+                margin: 0.5rem 0;
+            }
+
+            .authenticity {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .authenticity img {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+
+            .left::after, .right::after {
+                left: 15px;
+            }
+
+            .right {
+                left: 0%;
             }
         }
     </style>
 </head>
 <body>
-    <div id="loading-overlay">
+    <div id="loading">
         <div class="spinner"></div>
     </div>
 
     <header>
-        <h1>Paróquia Matriz de Cascavel</h1>
-        <p>Fé, Comunidade e Tradição</p>
+        <h1 class="animate__animated animate__fadeInDown">Documentação do Site da Paróquia Matriz de Cascavel</h1>
+        <p class="animate__animated animate__fadeInUp">Um projeto inovador e gratuito desenvolvido pela Opulensys</p>
     </header>
 
     <nav>
         <ul>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#eventos">Eventos</a></li>
-            <li><a href="#ministerios">Ministérios</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><a href="#introducao">Introdução</a></li>
+            <li><a href="#justificativa">Justificativa</a></li>
+            <li><a href="#objetivos">Objetivos</a></li>
+            <li><a href="#metodologia">Metodologia</a></li>
+            <li><a href="#recursos">Recursos</a></li>
+            <li><a href="#cronograma">Cronograma</a></li>
+            <li><a href="#orcamento">Orçamento</a></li>
+            <li><a href="#resultados">Resultados Esperados</a></li>
+            <li><a href="#arquitetura">Arquitetura</a></li>
+            <li><a href="#adicionar-sistema">Adicionar Sistema</a></li>
         </ul>
     </nav>
 
     <div class="container">
-        <section id="sobre">
-            <h2>Sobre Nossa Paróquia</h2>
-            <p>A Paróquia Matriz de Cascavel, localizada no coração do Ceará, é um farol de fé e comunidade para nossa região. Com uma rica história e tradição, estamos comprometidos em servir a Deus e nossa comunidade há gerações.</p>
-            <div class="icon-grid">
-                <div class="icon-item">
-                    <div class="icon">⛪</div>
-                    <p>Fundada em 1750</p>
-                </div>
-                <div class="icon-item">
-                    <div class="icon">👥</div>
-                    <p>Comunidade Ativa</p>
-                </div>
-                <div class="icon-item">
-                    <div class="icon">🤝</div>
-                    <p>Serviço Social</p>
+        <section id="introducao" data-aos="fade-up">
+            <h2>1. Introdução</h2>
+            <p>A Opulensys, empresa especializada em soluções tecnológicas e design digital, tem o prazer de apresentar um projeto inovador e gratuito de desenvolvimento de site para a Paróquia Matriz de Cascavel, localizada no Ceará. Este projeto é conduzido pelo programador web Rafael Silva Inacio, com o intuito de criar uma plataforma digital completa, que integre conteúdo estático e dinâmico.</p>
+            <p>A proposta é proporcionar um canal de comunicação direto, funcional e intuitivo entre a paróquia e seus fiéis, indo além das limitações atuais do uso do Linktree. Nosso compromisso com a Paróquia Matriz de Cascavel é disponibilizar uma ferramenta moderna que reflita sua identidade e suas atividades, com o objetivo de aumentar a interação com a comunidade local e facilitar o acesso a informações essenciais.</p>
+        </section>
+
+        <section id="justificativa" data-aos="fade-up">
+            <h2>2. Justificativa</h2>
+            <p>A criação do site da Paróquia Matriz de Cascavel é motivada pela necessidade de uma comunicação mais efetiva e acessível com a comunidade. Atualmente, a paróquia conta apenas com o Linktree para divulgar suas informações, o que limita a apresentação de conteúdo e dificulta a atualização de novidades e comunicados.</p>
+            <p>Acreditamos que a implementação de um site próprio possibilitará uma comunicação mais clara, dinâmica e organizada, essencial para a paróquia expandir sua presença digital e reforçar seu papel na vida dos fiéis. O site permitirá que os fiéis e a comunidade acessem facilmente os horários das missas, eventos, comunicados e outros conteúdos relevantes.</p>
+        </section>
+
+        <section id="objetivos" data-aos="fade-up">
+            <h2>3. Objetivos</h2>
+            <div class="mind-map">
+                <div class="mind-map-node">Objetivos do Projeto</div>
+                <div class="mind-map-child">
+                    <div class="mind-map-node">Aumentar Visibilidade</div>
+                    <div class="mind-map-node">Centralizar Informações</div>
+                    <div class="mind-map-node">Facilitar Comunicação</div>
+                    <div class="mind-map-node">Estimular Engajamento</div>
+                    <div class="mind-map-node">Fortalecer Identidade Digital</div>
                 </div>
             </div>
         </section>
 
-        <section id="eventos">
-            <h2>Próximos Eventos</h2>
-            <p>Fique por dentro dos nossos eventos e celebrações. Junte-se a nós para fortalecer nossa fé e comunidade.</p>
-            <div class="icon-grid">
-                <div class="icon-item">
-                    <div class="icon">📅</div>
-                    <p>Missa Dominical</p>
-                    <small>Todo domingo às 8h e 19h</small>
+        <section id="metodologia" data-aos="fade-up">
+            <h2>4. Metodologia</h2>
+            <p>A metodologia da Opulensys é estruturada para garantir o máximo de eficiência e qualidade no desenvolvimento do site. Assim que o projeto for aprovado, iniciaremos a coleta de informações e recursos gráficos da paróquia. Abaixo está um resumo das etapas:</p>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="content">
+                        <h2>Etapa 1</h2>
+                        <p>Confirmação e Planejamento Inicial</p>
+                    </div>
                 </div>
-                <div class="icon-item">
-                    <div class="icon">📖</div>
-                    <p>Estudo Bíblico</p>
-                    <small>Quartas-feiras às 19h30</small>
+                <div class="timeline-item right">
+                    <div class="content">
+                        <h2>Etapa 2</h2>
+                        <p>Recebimento dos Materiais</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="content">
+                        <h2>Etapa 3</h2>
+                        <p>Coleta de Informações (Prazo Inicial de 10 Dias)</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="content">
+                        <h2>Etapa 4</h2>
+                        <p>Desenvolvimento</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="ministerios">
-            <h2>Nossos Ministérios</h2>
-            <p>Descubra como você pode se envolver e servir em nossa comunidade através dos diversos ministérios.</p>
+        <section id="recursos" data-aos="fade-up">
+            <h2>5. Recursos Necessários</h2>
+            <p>Utilizaremos nossa infraestrutura de sistemas da Opulensys para garantir a segurança e o bom desempenho do site. No entanto, será essencial que a Paróquia Matriz de Cascavel forneça alguns materiais e informações, como:</p>
             <ul>
-                <li>Ministério de Música</li>
-                <li>Catequese</li>
-                <li>Pastoral da Família</li>
-                <li>Grupo de Jovens</li>
+                <li>Logotipo da paróquia, para representar sua identidade visual.</li>
+                <li>Documentação histórica e informações institucionais, para compor o conteúdo sobre a paróquia.</li>
+                <li>Preferências específicas sobre funcionalidades e layout, caso desejem personalizar algum aspecto do site.</li>
             </ul>
         </section>
 
-        <section id="contato">
-            <h2>Entre em Contato</h2>
-            <p>Estamos aqui para você. Entre em contato conosco para mais informações ou para agendar uma visita.</p>
-            <form id="contact-form">
-                <input type="text" id="name" placeholder="Seu Nome" required>
-                <input type="email" id="email" placeholder="Seu Email" required>
-                <textarea id="message" placeholder="Sua Mensagem" rows="5" required></textarea>
-                <button type="submit" class="btn">Enviar Mensagem</button>
-            </form>
+        <section id="cronograma" data-aos="fade-up">
+            <h2>6. Cronograma</h2>
+            <div id="cronograma-chart"></div>
         </section>
 
-        <section id="novo-sistema">
-            <h2>Adicionar Novo Sistema</h2>
-            <form id="system-form">
-                <input type="text" id="system-title" placeholder="Título do Sistema" required>
-                <textarea id="system-description" placeholder="Descrição detalhada do sistema" rows="5" required></textarea>
-                <input type="text" id="system-design" placeholder="Designs necessários para o sistema" required>
-                <button type="submit" class="btn">Enviar</button>
-            </form>
+        <section id="orcamento" data-aos="fade-up">
+            <h2>7. Orçamento</h2>
+            <p>Este projeto não terá custos iniciais para a Paróquia Matriz de Cascavel. Durante os primeiros cinco meses, não será cobrado nada pela manutenção ou atualizações necessárias, como uma contribuição da Opulensys para a comunidade. Após esse período, as condições de manutenção podem ser ajustadas conforme as necessidades da paróquia.</p>
         </section>
 
-        <section id="autenticidade">
-            <h2>Autenticidade e Segurança</h2>
-            <p>Todos os nossos conteúdos e sistemas são autorizados e seguros. Sua privacidade e segurança são nossas prioridades.</p>
-            <div class="icon-grid">
-                <div class="icon-item">
-                    <div class="icon">🔒</div>
-                    <p>Conteúdo Seguro</p>
-                </div>
-                <div class="icon-item">
-                    <div class="icon">⬇️</div>
-                    <p>Download Autorizado</p>
-                </div>
+        <section id="resultados" data-aos="fade-up">
+            <h2>8. Resultados Esperados</h2>
+            <p>Com o lançamento deste site, esperamos alcançar resultados que impactem positivamente a Paróquia Matriz de Cascavel e a comunidade ao seu redor:</p>
+            <ul>
+                <li>Melhoria na comunicação com a comunidade, promovendo maior transparência e acessibilidade.</li>
+                <li>Aumento do engajamento dos fiéis, que poderão acompanhar eventos e atividades de forma facilitada.</li>
+                <li>Maior visibilidade para visitantes e novos membros, reforçando a presença online da paróquia.</li>
+                <li>Economia de tempo e recursos, ao centralizar informações em uma plataforma de fácil acesso e atualização.</li>
+                <li>Facilidade na gestão de conteúdos, com uma estrutura que permite que a equipe da paróquia mantenha o site sempre atualizado.</li>
+            </ul>
+        </section>
+
+        <section id="arquitetura" data-aos="fade-up">
+            <h2>9. Arquitetura do Sistema</h2>
+            <img src="https://mermaid.ink/img/pako:eNp1kc1uwjAQhF_F2nNApD0gISGqtiCEeoBDL1x6cOwNWHLsyHZSoMq7d50fKKXtabUz3_5YOwpUIVqkPtaab7hQx0aD_QrAyHn9Ac8lQQOndDBVZYxZ4vhlVGKOMg0wQmEDw3oxn88wbcY0tIZrOnT16HJJ8xtb5Xd-91t47IxqSBYHXIcaVkzvsK-VKqXfRwBGlEhPZgeCvRmTq6k9OCeJjm9fbzFgSY3ijn7eWeNGF8kZvcOV54YyKLbsI4nvxHxEsNAhASgXIxTB9-TnqjSuVsg77KP_35_6wEnHksaVxgJbPrwrLe2pzG20506GVtXWhzuSvErUEB8JudLUZfKhRCvCoLOiwLqYDkmYjCdBEs2n0TRKZzF2WRClQRiOkyiZRqksZsM4jOKxTNP_P4-n1Xv8hkZJZNSRq3eXFy64hSL-" alt="Arquitetura do Sistema" class="architecture-diagram">
+        </section>
+
+        <section class="icon-section" data-aos="fade-up">
+            <div class="icon-item">
+                <i class="fas fa-church"></i>
+                <p>Identidade Digital</p>
             </div>
-            <img src="autenticidade.png" alt="Selo de Autenticidade" style="max-width: 100%; height: auto; margin-top: 20px;">
+            <div class="icon-item">
+                <i class="fas fa-users"></i>
+                <p>Engajamento Comunitário</p>
+            </div>
+            <div class="icon-item">
+                <i class="fas fa-calendar-alt"></i>
+                <p>Gestão de Eventos</p>
+            </div>
+            <div class="icon-item">
+                <i class="fas fa-mobile-alt"></i>
+                <p>Acessibilidade Mobile</p>
+            </div>
+            <div class="icon-item">
+                <i class="fas fa-share-alt"></i>
+                <p>Integração com Redes Sociais</p>
+            </div>
+        </section>
+
+        <section class="authenticity" data-aos="fade-up">
+            <img src="autenticidade.png" alt="Selo de Autenticidade">
+            <div>
+                <h3>Garantia de Autenticidade</h3>
+                <p>Este projeto é autêntico e autorizado pela Opulensys. Todos os direitos e permissões necessários foram concedidos para o desenvolvimento e implementação deste site.</p>
+                <a href="#" download class="btn btn-primary">Baixar Certificado de Autenticidade</a>
+            </div>
+        </section>
+
+        <section id="adicionar-sistema" class="form-section" data-aos="fade-up">
+            <h2>Adicionar Novo Sistema</h2>
+            <form id="sistema-form">
+                <input type="text" id="titulo" placeholder="Título do Sistema" required>
+                <textarea id="descricao" placeholder="Descrição detalhada do sistema" required></textarea>
+                <h6>Para enviar os designs necessários para o sistema, entre em contato com nossa equipe.</h6>
+                <button type="submit">Enviar</button>
+            </form>
         </section>
     </div>
 
-    <script type="module">
-        // Import Firebase
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js';
-        import { getDatabase, ref, push } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js';
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/nouislider@15.5.1/dist/nouislider.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8.4.5/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/lib/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simplebar@5.3.9/dist/simplebar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.0.2/dist/mermaid.min.js"></script>
 
-        // Firebase configuration
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+        // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyB0Je06Cc3Tzq6fqpDICDt0aGXqRzzhmhI",
             authDomain: "opulensys-1150c.firebaseapp.com",
@@ -262,69 +619,181 @@
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
-        // Loading animation
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loading-overlay').style.display = 'none';
-                document.querySelectorAll('section').forEach(section => {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                });
-            }, 1000);
+        document.addEventListener('DOMContentLoaded', (event) => {
+            AOS.init();
+            
+            tippy('[data-tippy-content]');
+            
+            const ps = new PerfectScrollbar('.scrollable');
+
+            flatpickr("#datepicker", {
+                dateFormat: "Y-m-d"
+            });
+
+            const quill = new Quill('#editor', {
+                theme: 'snow'
+            });
+
+            hljs.highlightAll();
+
+            const map = L.map('map').setView([51.505, -0.09], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+            new SimpleBar(document.querySelector('.simplebar'));
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var options = {
+                series: [{
+                    name: "Desktops",
+                    data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+                }],
+                chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'straight'
+                },
+                grid: {
+                    row: {
+                        colors: ['#f3f3f3', 'transparent'],
+                        opacity: 0.5
+                    },
+                },
+                xaxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
+
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+            });
+            calendar.render();
+
+            mermaid.initialize({ startOnLoad: true });
         });
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        document.getElementById('sistema-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const titulo = document.getElementById('titulo').value;
+            const descricao = document.getElementById('descricao').value;
+
+            const loading = document.getElementById('loading');
+            loading.style.display = 'flex';
+
+            push(ref(database, 'sistemas'), {
+                titulo: titulo,
+                descricao: descricao,
+                timestamp: Date.now()
+            }).then(() => {
+                loading.style.display = 'none';
+                Swal.fire(
+                    'Sucesso!',
+                    'Sistema adicionado com sucesso!',
+                    'success'
+                );
+                document.getElementById('sistema-form').reset();
+            }).catch((error) => {
+                loading.style.display = 'none';
+                Swal.fire(
+                    'Erro!',
+                    'Erro ao adicionar sistema: ' + error.message,
+                    'error'
+                );
             });
         });
 
-        // Form submission
-        document.getElementById('contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Mensagem enviada com sucesso!');
-            e.target.reset();
-        });
-
-        // System form submission
-        document.getElementById('system-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const title = document.getElementById('system-title').value;
-            const description = document.getElementById('system-description').value;
-            const design = document.getElementById('system-design').value;
-
-            try {
-                await push(ref(database, 'systems'), { title, description, design });
-                alert('Sistema adicionado com sucesso!');
-                e.target.reset();
-            } catch (error) {
-                console.error('Erro ao adicionar sistema:', error);
-                alert('Erro ao adicionar sistema. Por favor, tente novamente.');
+        // Cronograma Chart
+        var options = {
+            series: [
+                {
+                    data: [
+                        {
+                            x: 'Coleta de Dados',
+                            y: [
+                                new Date('2023-06-01').getTime(),
+                                new Date('2023-06-10').getTime()
+                            ]
+                        },
+                        {
+                            x: 'Design da Interface',
+                            y: [
+                                new Date('2023-06-11').getTime(),
+                                new Date('2023-06-20').getTime()
+                            ]
+                        },
+                        {
+                            x: 'Implementação Back-End',
+                            y: [
+                                new Date('2023-06-21').getTime(),
+                                new Date('2023-06-30').getTime()
+                            ]
+                        },
+                        {
+                            x: 'Inserção de Conteúdo',
+                            y: [
+                                new Date('2023-07-01').getTime(),
+                                new Date('2023-07-10').getTime()
+                            ]
+                        },
+                        {
+                            x: 'Implementação Front-End',
+                            y: [
+                                new Date('2023-07-11').getTime(),
+                                new Date('2023-07-20').getTime()
+                            ]
+                        }
+                    ]
+                }
+            ],
+            chart: {
+                height: 350,
+                type: 'rangeBar'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            xaxis: {
+                type: 'datetime'
             }
-        });
+        };
 
-        // Animate icons on hover
-        document.querySelectorAll('.icon-item').forEach(item => {
-            item.addEventListener('mouseover', () => {
-                item.style.transform = 'scale(1.1)';
-            });
-            item.addEventListener('mouseout', () => {
-                item.style.transform = 'scale(1)';
-            });
-        });
-
-        // Parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            document.querySelectorAll('section').forEach(section => {
-                const speed = section.dataset.speed || 0.5;
-                section.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
+        var chart = new ApexCharts(document.querySelector("#cronograma-chart"), options);
+        chart.render();
     </script>
 </body>
 </html>
