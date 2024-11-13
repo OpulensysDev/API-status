@@ -3,860 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulação de Sistema Operacional Avançado</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Paróquia Matriz de Cascavel</title>
     <style>
-        body, html {
+        * {
             margin: 0;
             padding: 0;
-            height: 100%;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
+            box-sizing: border-box;
         }
-        #desktop {
-            background-image: url('https://source.unsplash.com/random/1920x1080?nature');
-            background-size: cover;
-            height: 100vh;
-            position: relative;
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
-        #taskbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 40px;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-            z-index: 1000;
-        }
-        #start-menu {
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-        #clock {
-            color: white;
-            margin-left: auto;
-        }
-        .icon {
-            width: 80px;
-            height: 80px;
-            margin: 10px;
-            text-align: center;
-            color: white;
-            cursor: pointer;
-            display: inline-block;
-            vertical-align: top;
-        }
-        .icon i {
-            font-size: 40px;
-            margin-bottom: 5px;
-        }
-        .icon-text {
-            font-size: 12px;
-            word-wrap: break-word;
-        }
-        .window {
-            position: absolute;
-            width: 600px;
-            height: 400px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: none;
-            z-index: 100;
-        }
-        .window-header {
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            cursor: move;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .window-title {
-            margin: 0;
-            font-size: 16px;
-        }
-        .window-controls {
-            display: flex;
-        }
-        .window-control {
-            margin-left: 5px;
-            cursor: pointer;
-        }
-        .window-content {
-            padding: 10px;
-            height: calc(100% - 35px);
-            overflow: auto;
-        }
-        .close-btn {
-            cursor: pointer;
-        }
-        #start-menu-content {
-            position: fixed;
-            bottom: 40px;
-            left: 0;
-            width: 250px;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            display: none;
-            z-index: 1001;
-        }
-        .start-menu-item {
-            padding: 10px;
-            cursor: pointer;
-        }
-        .start-menu-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        #file-explorer .folder, #file-explorer .file {
-            margin: 5px 0;
-            cursor: pointer;
-        }
-        #file-explorer .folder:before {
-            content: "\f07b";
-            font-family: "Font Awesome 5 Free";
-            margin-right: 5px;
-        }
-        #file-explorer .file:before {
-            content: "\f15b";
-            font-family: "Font Awesome 5 Free";
-            margin-right: 5px;
-        }
-        #text-editor {
-            width: 100%;
-            height: 100%;
-            border: none;
-            resize: none;
-        }
-        #image-viewer img {
-            max-width: 100%;
-            max-height: 100%;
-            display: block;
+        .container {
+            width: 90%;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
         }
-        #media-player video {
-            width: 100%;
-            height: calc(100% - 40px);
+        header {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
         }
-        #media-controls {
+        nav {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        nav ul {
+            list-style-type: none;
             display: flex;
             justify-content: center;
-            padding: 10px;
+            flex-wrap: wrap;
         }
-        #media-controls button {
-            margin: 0 5px;
+        nav ul li {
+            margin: 0 15px;
         }
-        #calculator-display {
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #1e3c72;
+        }
+        section {
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        h1, h2 {
+            color: #1e3c72;
+        }
+        h2 {
+            border-bottom: 2px solid #1e3c72;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: linear-gradient(to right, #2a5298, #1e3c72);
+        }
+        .icon-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .icon-item {
+            text-align: center;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+        .icon-item:hover {
+            transform: scale(1.1);
+        }
+        .icon {
+            font-size: 2em;
+            color: #1e3c72;
+        }
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 50px;
-            font-size: 24px;
-            text-align: right;
-            margin-bottom: 10px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         }
-        .calc-btn {
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #1e3c72;
+            border-radius: 50%;
             width: 50px;
             height: 50px;
-            font-size: 18px;
-            margin: 2px;
+            animation: spin 1s linear infinite;
         }
-        #browser-controls {
-            display: flex;
-            margin-bottom: 10px;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        #url-bar {
-            flex-grow: 1;
-            margin-right: 5px;
-        }
-        #browser-frame {
-            width: 100%;
-            height: calc(100% - 40px);
-            border: none;
-        }
-        #terminal-output {
-            height: calc(100% - 30px);
-            overflow-y: auto;
-            background-color: black;
-            color: #00ff00;
-            font-family: monospace;
-            padding: 5px;
-        }
-        #terminal-input {
-            width: 100%;
-            background-color: black;
-            color: #00ff00;
-            font-family: monospace;
-            border: none;
-            outline: none;
-        }
-        #paint-canvas {
-            border: 1px solid #000;
-        }
-        .color-picker {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
-        .color-option {
-            width: 20px;
-            height: 20px;
-            margin: 2px;
-            cursor: pointer;
-        }
-        #task-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .task-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px;
-            border-bottom: 1px solid #ccc;
-        }
-        .task-item button {
-            margin-left: 10px;
-        }
-        #weather-info {
-            text-align: center;
-        }
-        #weather-icon {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-        #pomodoro-timer {
-            text-align: center;
-            font-size: 24px;
-        }
-        #pomodoro-controls {
-            margin-top: 10px;
-        }
-        #game-canvas {
-            border: 1px solid #000;
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="desktop">
-        <div class="icon" data-app="file-explorer">
-            <i class="fas fa-folder"></i>
-            <div class="icon-text">Explorador de Arquivos</div>
-        </div>
-        <div class="icon" data-app="text-editor">
-            <i class="fas fa-file-alt"></i>
-            <div class="icon-text">Editor de Texto</div>
-        </div>
-        <div class="icon" data-app="image-viewer">
-            <i class="fas fa-image"></i>
-            <div class="icon-text">Visualizador de Imagens</div>
-        </div>
-        <div class="icon" data-app="media-player">
-            <i class="fas fa-play-circle"></i>
-            <div class="icon-text">Media Player</div>
-        </div>
-        <div class="icon" data-app="calculator">
-            <i class="fas fa-calculator"></i>
-            <div class="icon-text">Calculadora</div>
-        </div>
-        <div class="icon" data-app="browser">
-            <i class="fas fa-globe"></i>
-            <div class="icon-text">Navegador</div>
-        </div>
-        <div class="icon" data-app="terminal">
-            <i class="fas fa-terminal"></i>
-            <div class="icon-text">Terminal</div>
-        </div>
-        <div class="icon" data-app="paint">
-            <i class="fas fa-paint-brush"></i>
-            <div class="icon-text">Paint</div>
-        </div>
-        <div class="icon" data-app="todo">
-            <i class="fas fa-tasks"></i>
-            <div class="icon-text">Lista de Tarefas</div>
-        </div>
-        <div class="icon" data-app="weather">
-            <i class="fas fa-cloud-sun"></i>
-            <div class="icon-text">Previsão do Tempo</div>
-        </div>
-        <div class="icon" data-app="pomodoro">
-            <i class="fas fa-clock"></i>
-            <div class="icon-text">Pomodoro Timer</div>
-        </div>
-        <div class="icon" data-app="game">
-            <i class="fas fa-gamepad"></i>
-            <div class="icon-text">Jogo</div>
-        </div>
+    <div id="loading-overlay">
+        <div class="spinner"></div>
     </div>
 
-    <div id="taskbar">
-        <div id="start-menu"><i class="fas fa-bars"></i></div>
-        <div id="open-windows"></div>
-        <div id="clock"></div>
+    <header>
+        <h1>Paróquia Matriz de Cascavel</h1>
+        <p>Fé, Comunidade e Tradição</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#eventos">Eventos</a></li>
+            <li><a href="#ministerios">Ministérios</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="sobre">
+            <h2>Sobre Nossa Paróquia</h2>
+            <p>A Paróquia Matriz de Cascavel, localizada no coração do Ceará, é um farol de fé e comunidade para nossa região. Com uma rica história e tradição, estamos comprometidos em servir a Deus e nossa comunidade há gerações.</p>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <div class="icon">⛪</div>
+                    <p>Fundada em 1750</p>
+                </div>
+                <div class="icon-item">
+                    <div class="icon">👥</div>
+                    <p>Comunidade Ativa</p>
+                </div>
+                <div class="icon-item">
+                    <div class="icon">🤝</div>
+                    <p>Serviço Social</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="eventos">
+            <h2>Próximos Eventos</h2>
+            <p>Fique por dentro dos nossos eventos e celebrações. Junte-se a nós para fortalecer nossa fé e comunidade.</p>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <div class="icon">📅</div>
+                    <p>Missa Dominical</p>
+                    <small>Todo domingo às 8h e 19h</small>
+                </div>
+                <div class="icon-item">
+                    <div class="icon">📖</div>
+                    <p>Estudo Bíblico</p>
+                    <small>Quartas-feiras às 19h30</small>
+                </div>
+            </div>
+        </section>
+
+        <section id="ministerios">
+            <h2>Nossos Ministérios</h2>
+            <p>Descubra como você pode se envolver e servir em nossa comunidade através dos diversos ministérios.</p>
+            <ul>
+                <li>Ministério de Música</li>
+                <li>Catequese</li>
+                <li>Pastoral da Família</li>
+                <li>Grupo de Jovens</li>
+            </ul>
+        </section>
+
+        <section id="contato">
+            <h2>Entre em Contato</h2>
+            <p>Estamos aqui para você. Entre em contato conosco para mais informações ou para agendar uma visita.</p>
+            <form id="contact-form">
+                <input type="text" id="name" placeholder="Seu Nome" required>
+                <input type="email" id="email" placeholder="Seu Email" required>
+                <textarea id="message" placeholder="Sua Mensagem" rows="5" required></textarea>
+                <button type="submit" class="btn">Enviar Mensagem</button>
+            </form>
+        </section>
+
+        <section id="novo-sistema">
+            <h2>Adicionar Novo Sistema</h2>
+            <form id="system-form">
+                <input type="text" id="system-title" placeholder="Título do Sistema" required>
+                <textarea id="system-description" placeholder="Descrição detalhada do sistema" rows="5" required></textarea>
+                <input type="text" id="system-design" placeholder="Designs necessários para o sistema" required>
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </section>
+
+        <section id="autenticidade">
+            <h2>Autenticidade e Segurança</h2>
+            <p>Todos os nossos conteúdos e sistemas são autorizados e seguros. Sua privacidade e segurança são nossas prioridades.</p>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <div class="icon">🔒</div>
+                    <p>Conteúdo Seguro</p>
+                </div>
+                <div class="icon-item">
+                    <div class="icon">⬇️</div>
+                    <p>Download Autorizado</p>
+                </div>
+            </div>
+            <img src="autenticidade.png" alt="Selo de Autenticidade" style="max-width: 100%; height: auto; margin-top: 20px;">
+        </section>
     </div>
 
-    <div id="start-menu-content">
-        <div class="start-menu-item" data-app="file-explorer">Explorador de Arquivos</div>
-        <div class="start-menu-item" data-app="text-editor">Editor de Texto</div>
-        <div class="start-menu-item" data-app="image-viewer">Visualizador de Imagens</div>
-        <div class="start-menu-item" data-app="media-player">Media Player</div>
-        <div class="start-menu-item" data-app="calculator">Calculadora</div>
-        <div class="start-menu-item" data-app="browser">Navegador</div>
-        <div class="start-menu-item" data-app="terminal">Terminal</div>
-        <div class="start-menu-item" data-app="paint">Paint</div>
-        <div class="start-menu-item" data-app="todo">Lista de Tarefas</div>
-        <div class="start-menu-item" data-app="weather">Previsão do Tempo</div>
-        <div class="start-menu-item" data-app="pomodoro">Pomodoro Timer</div>
-        <div class="start-menu-item" data-app="game">Jogo</div>
-    </div>
+    <script type="module">
+        // Import Firebase
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js';
+        import { getDatabase, ref, push } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js';
 
-    <div id="file-explorer" class="window">
-        <div class="window-header">
-            <h3 class="window-title">Explorador de Arquivos</h3>
-            <div class="window-controls">
-                <span class="window-control minimize-btn">&minus;</span>
-                <span class="window-control maximize-btn">&#9633;</span>
-                <span class="window-control close-btn">&times;</span>
-            </div>
-        </div>
-        <div class="window-content">
-            <div class="folder">Documentos</div>
-            <div class="folder">Imagens</div>
-            <div class="folder">Músicas</div>
-            <div class="folder">Vídeos</div>
-            <div class="file">arquivo1.txt</div>
-            <div class="file">arquivo2.docx</div>
-            <div class="file">imagem.jpg</div>
-            <div class="file">musica.mp3</div>
-            <div class="file">video.mp4</div>
-        </div>
-    </div>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB0Je06Cc3Tzq6fqpDICDt0aGXqRzzhmhI",
+            authDomain: "opulensys-1150c.firebaseapp.com",
+            databaseURL: "https://opulensys-1150c-default-rtdb.firebaseio.com",
+            projectId: "opulensys-1150c",
+            storageBucket: "opulensys-1150c.firebasestorage.app",
+            messagingSenderId: "566236902104",
+            appId: "1:566236902104:web:76a5cc9d203877989d5dad",
+            measurementId: "G-FD893MSTS3"
+        };
 
-    <div id="text-editor" class="window">
-        <div class="window-header">
-            <h3 class="window-title">Editor de Texto</h3>
-            <div class="window-controls">
-                <span class="window-control minimize-btn">&minus;</span>
-                <span class="window-control maximize-btn">&#9633;</span>
-                <span class="window-control close-btn">&times;</span>
-            </div>
-        </div>
-        <div class="window-content">
-            <textarea id="text-editor-content" placeholder="Digite seu texto aqui..."></textarea>
-        </div>
-    </div>
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
 
-    <div id="image-viewer" class="window">
-        <div class="window-header">
-            <h3 class="window-title">Visualizador de Imagens</h3>
-            <div class="window-controls">
-                <span class="window-control minimize-btn">&minus;</span>
-                <span class="window-control maximize-btn">&#9633;</span>
-                <span class="window-control close-btn">&times;</span>
-            </div>
-        </div>
-        <div class="window-content">
-            <img src="https://source.unsplash.com/random/800x600" alt="Imagem aleatória">
-        </div>
-    </div>
+        // Loading animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading-overlay').style.display = 'none';
+                document.querySelectorAll('section').forEach(section => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                });
+            }, 1000);
+        });
 
-    <div id="media-player" class="window">
-        <div class="window-header">
-            <h3 class="window-title">Media Player</h3>
-            <div class="window-controls">
-                <span class="window-control minimize-btn">&minus;</span>
-                <span class="window-control maximize-btn">&#9633;</span>
-                <span class="window-control close-btn">&times;</span>
-            </div>
-        </div>
-        <div class="window-content">
-            <video id="video-player" controls>
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                Seu navegador não suporta o elemento de vídeo.
-            </video>
-            <div id="media-controls">
-                <button id="play-pause">Play/Pause</button>
-                <button id="stop">Stop</button>
-                <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
-            </div>
-        </div>
-    </div>
-
-    <div id="calculator" class="window">
-        <div class="window-header">
-            <h3 class="window-title">Calculadora</h3>
-            <div class="window-controls">
-                <span class="window-control minimize-btn">&minus;</span>
-                <span class="window-control maximize-btn">&#9633;</span>
-                <span class="window-control close-btn">&times;</span>
-            </div>
-        </div>
-        <div class="window-content">
-            <input type="text" id="calculator-display" readonly>
-            <div>
-                <button class="calc-btn" onclick="appendToDisplay('7')">7</button>
-                <button class="calc-btn" onclick="appendToDisplay('8')">8</button>
-                <button class="calc-btn" onclick="appendToDisplay('9')">9</button>
-                <button class="calc-btn" onclick="appendToDisplay('+')">+</button>
-            </div>
-            <div>
-                <button class="calc-btn" onclick="appendToDisplay('4')">4</button>
-                <button class="calc-btn" onclick="appendToDisplay('5')">5</button>
-                <button class="calc-btn" onclick="appendToDisplay('6')">6</button>
-                <button class="calc-btn" onclick="appendToDisplay('-')">-</button>
-            </div>
-            <div>
-                <button class="calc-btn" onclick="appendToDisplay('1')">1</button>
-                <button class="calc-btn" onclick="appendToDisplay('2')">2</button>
-                <button class="calc-btn" onclick="appendToDisplay('3')">3</button>
-                <button class="calc-btn" onclick="appendToDisplay('*')">*</button>
-            </div>
-            <div>
-                <button class="calc-btn" onclick="appendToDisplay('0')">0</button>
-                <button class="calc-btn" onclick="appendToDisplay('.')">.</button>
-                <button class="calc-btn" onclick="calculateResult()">=</button>
-                <button class="calc-btn" onclick="appendToDisplay('/')">/</button>
-            </div>
-            <div>
-                <button class="calc-btn" onclick="clearDisplay()">C</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="browser" class="window">
-        <div class="window-header">
-            <h3 class="window-title">Navegador</h3>
-            <div class="window-controls">
-                <span class="window-control minimize-btn">&minus;</span>
-                <span class="window-control maximize-btn">&#9633;</span>
-                <span class="window-control close-btn">&times;</span>
-            </div>
-        </div>
-        <div class="window-content">
-            <div id="browser-controls">
-                <input type="text" id="url-bar" placeholder="Digite uma URL">
-                <button onclick="loadURL()">Ir</button>
-            </div>
-            <iframe id="browser-frame"></iframe>
-        </div>
-    </div>
-
-    <div id="terminal" class="window">
-        <div class="window-header">
-            <h3 class="window-title">Terminal</h3>
-            <div class="window-controls">
-                <span class="window-control minimize-btn">&minus;</span>
-                <span class="window-control maximize-btn">&#9633;</span>
-                <span class="window-control close-btn">&times;</span>
-            </div>
-        </div>
-        <div class="window-content">
-            <div id="terminal-output"></div>
-            <input type="text" id="terminal-input" placeholder="Digite um comando...">
-        </div>
-    </div>
-
-    <div id="paint" class="window">
-        <div class="window-header">
-            <h3 class="window-title">Paint</h3>
-            <div class="window-controls">
-                <span class="window-control minimize-btn">&minus;</span>
-                <span class="window-control maximize-btn">&#9633;</span>
-                <span class="window-control close-btn">&times;</span>
-            </div>
-        </div>
-        <div class="window-content">
-            <div class="color-picker">
-                <div class="color-option" style="background-color: black;"></div>
-                <div class="color-option" style="background-color: red;"></div>
-                <div class="color-option" style="background-color: green;"></div>
-                <div class="color-option" style="background-color: blue;"></div>
-                <div class="color-option" style="background-color: yellow;"></div>
-            </div>
-            <canvas id="paint-canvas" width="500" height="300"></canvas>
-        </div>
-    </div>
-
-    <div id="todo" class="window">
-        <div class="window-header">
-            <h3 class="window-title">Lista de Tarefas</h3>
-            <div class="window-controls">
-                <span class="window-control minimize-btn">&minus;</span>
-                <span class="window-control maximize-btn">&#9633;</span>
-                <span class="window-control close-btn">&times;</span>
-            </div>
-        </div>
-        <div class="window-content">
-            <input type="text" id="task-input" placeholder="Nova tarefa">
-            <button onclick="addTask()">Adicionar</button>
-            <ul id="task-list"></ul>
-        </div>
-    </div>
-
-    <div id="weather" class="window">
-        <div class="window-header">
-            <h3 class="window-title">Previsão do Tempo</h3>
-            <div class="window-controls">
-                <span class="window-control minimize-btn">&minus;</span>
-                <span class="window-control maximize-btn">&#9633;</span>
-                <span class="window-control close-btn">&times;</span>
-            </div>
-        </div>
-        <div class="window-content">
-            <div id="weather-info">
-                <div id="weather-icon"></div>
-                <div id="temperature"></div>
-                <div id="description"></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="pomodoro" class="window">
-        <div class="window-header">
-            <h3 class="window-title">Pomodoro Timer</h3>
-            <div class="window-controls">
-                <span class="window-control minimize-btn">&minus;</span>
-                <span class="window-control maximize-btn">&#9633;</span>
-                <span class="window-control close-btn">&times;</span>
-            </div>
-        </div>
-        <div class="window-content">
-            <div id="pomodoro-timer">25:00</div>
-            <div id="pomodoro-controls">
-                <button onclick="startPomodoro()">Iniciar</button>
-                <button onclick="pausePomodoro()">Pausar</button>
-                <button onclick="resetPomodoro()">Reiniciar</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="game" class="window">
-        <div class="window-header">
-            <h3 class="window-title">Jogo</h3>
-            <div class="window-controls">
-                <span class="window-control minimize-btn">&minus;</span>
-                <span class="window-control maximize-btn">&#9633;</span>
-                <span class="window-control close-btn">&times;</span>
-            </div>
-        </div>
-        <div class="window-content">
-            <canvas id="game-canvas" width="400" height="300"></canvas>
-            <div>
-                <button onclick="startGame()">Iniciar Jogo</button>
-                <p>Use as setas do teclado para mover o jogador</p>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Tornar as janelas arrastáveis, redimensionáveis e focalizáveis
-            $(".window").draggable({
-                handle: ".window-header",
-                containment: "parent"
-            }).resizable({
-                minHeight: 200,
-                minWidth: 200
-            }).mousedown(function() {
-                $(".window").css('z-index', 100);
-                $(this).css('z-index', 101);
-            });
-
-            // Abrir aplicativos ao clicar nos ícones
-            $(".icon, .start-menu-item").on("click", function() {
-                const appId = $(this).data("app");
-                openApp(appId);
-            });
-
-            // Fechar janelas
-            $(".close-btn").on("click", function() {
-                $(this).closest(".window").hide();
-                updateTaskbar();
-            });
-
-            // Minimizar janelas
-            $(".minimize-btn").on("click", function() {
-                $(this).closest(".window").hide();
-                updateTaskbar();
-            });
-
-            // Maximizar janelas
-            $(".maximize-btn").on("click", function() {
-                const window = $(this).closest(".window");
-                if (window.hasClass("maximized")) {
-                    window.removeClass("maximized").css({
-                        width: "",
-                        height: "",
-                        top: "",
-                        left: ""
-                    });
-                } else {
-                    window.addClass("maximized").css({
-                        width: "100%",
-                        height: "calc(100% - 40px)",
-                        top: "0",
-                        left: "0"
-                    });
-                }
-            });
-
-            // Atualizar o relógio
-            function updateClock() {
-                $("#clock").text(moment().format("HH:mm:ss"));
-            }
-            setInterval(updateClock, 1000);
-            updateClock();
-
-            // Abrir/fechar menu iniciar
-            $("#start-menu").on("click", function() {
-                $("#start-menu-content").toggle();
-            });
-
-            // Fechar menu iniciar ao clicar fora dele
-            $(document).on("click", function(event) {
-                if (!$(event.target).closest("#start-menu, #start-menu-content").length) {
-                    $("#start-menu-content").hide();
-                }
-            });
-
-            // Inicializar o paint
-            const canvas = document.getElementById('paint-canvas');
-            const ctx = canvas.getContext('2d');
-            let painting = false;
-            let currentColor = 'black';
-
-            $('.color-option').on('click', function() {
-                currentColor = $(this).css('background-color');
-            });
-
-            canvas.addEventListener('mousedown', startPosition);
-            canvas.addEventListener('mouseup', endPosition);
-            canvas.addEventListener('mousemove', draw);
-
-            function startPosition(e) {
-                painting = true;
-                draw(e);
-            }
-
-            function endPosition() {
-                painting = false;
-                ctx.beginPath();
-            }
-
-            function draw(e) {
-                if (!painting) return;
-                ctx.lineWidth = 5;
-                ctx.lineCap = 'round';
-                ctx.strokeStyle = currentColor;
-
-                ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-            }
-
-            // Inicializar o terminal
-            const terminalOutput = document.getElementById('terminal-output');
-            const terminalInput = document.getElementById('terminal-input');
-
-            terminalInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    const command = this.value;
-                    terminalOutput.innerHTML += `<div>> ${command}</div>`;
-                    executeCommand(command);
-                    this.value = '';
-                }
-            });
-
-            function executeCommand(command) {
-                let output = '';
-                switch(command.toLowerCase()) {
-                    case 'help':
-                        output = 'Comandos disponíveis: help, clear, date, echo [texto]';
-                        break;
-                    case 'clear':
-                        terminalOutput.innerHTML = '';
-                        return;
-                    case 'date':
-                        output = new Date().toString();
-                        break;
-                    default:
-                        if (command.toLowerCase().startsWith('echo ')) {
-                            output = command.slice(5);
-                        } else {
-                            output = `Comando não reconhecido: ${command}`;
-                        }
-                }
-                terminalOutput.innerHTML += `<div>${output}</div>`;
-                terminalOutput.scrollTop = terminalOutput.scrollHeight;
-            }
-
-            // Inicializar a lista de tarefas
-            window.addTask = function() {
-                const taskInput = document.getElementById('task-input');
-                const taskList = document.getElementById('task-list');
-                if (taskInput.value.trim() !== '') {
-                    const li = document.createElement('li');
-                    li.className = 'task-item';
-                    li.innerHTML = `
-                        <span>${taskInput.value}</span>
-                        <button onclick="removeTask(this)">Remover</button>
-                    `;
-                    taskList.appendChild(li);
-                    taskInput.value = '';
-                }
-            };
-
-            window.removeTask = function(button) {
-                button.parentElement.remove();
-            };
-
-            // Inicializar a previsão do tempo (simulada)
-            function updateWeather() {
-                const weatherIcons = ['☀️', '⛅', '☁️', '🌧️', '⛈️', '❄️'];
-                const randomIcon = weatherIcons[Math.floor(Math.random() * weatherIcons.length)];
-                const randomTemp = Math.floor(Math.random() * 30) + 10; // 10°C a 40°C
-                const descriptions = ['Ensolarado', 'Parcialmente nublado', 'Nublado', 'Chuvoso', 'Tempestuoso', 'Nevando'];
-                const randomDescription = descriptions[weatherIcons.indexOf(randomIcon)];
-
-                document.getElementById('weather-icon').textContent = randomIcon;
-                document.getElementById('temperature').textContent = `${randomTemp}°C`;
-                document.getElementById('description').textContent = randomDescription;
-            }
-            updateWeather();
-            setInterval(updateWeather, 60000); // Atualiza a cada minuto
-
-            // Inicializar o Pomodoro Timer
-            let pomodoroInterval;
-            let pomodoroTime = 25 * 60; // 25 minutos
-
-            function updatePomodoroDisplay() {
-                const minutes = Math.floor(pomodoroTime / 60);
-                const seconds = pomodoroTime % 60;
-                document.getElementById('pomodoro-timer').textContent = 
-                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            }
-
-            window.startPomodoro = function() {
-                clearInterval(pomodoroInterval);
-                pomodoroInterval = setInterval(() => {
-                    if (pomodoroTime > 0) {
-                        pomodoroTime--;
-                        updatePomodoroDisplay();
-                    } else {
-                        clearInterval(pomodoroInterval);
-                        alert('Tempo esgotado!');
-                    }
-                }, 1000);
-            };
-
-            window.pausePomodoro = function() {
-                clearInterval(pomodoroInterval);
-            };
-
-            window.resetPomodoro = function() {
-                clearInterval(pomodoroInterval);
-                pomodoroTime = 25 * 60;
-                updatePomodoroDisplay();
-            };
-
-            // Inicializar o jogo
-            const gameCanvas = document.getElementById('game-canvas');
-            const gameCtx = gameCanvas.getContext('2d');
-            let player = { x: 200, y: 150, size: 20, speed: 5 };
-            let gameLoop;
-
-            function drawPlayer() {
-                gameCtx.fillStyle = 'blue';
-                gameCtx.fillRect(player.x, player.y, player.size, player.size);
-            }
-
-            function clearGame() {
-                gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-            }
-
-            function updateGame() {
-                clearGame();
-                drawPlayer();
-            }
-
-            window.startGame = function() {
-                if (gameLoop) clearInterval(gameLoop);
-                gameLoop = setInterval(updateGame, 1000 / 60); // 60 FPS
-            };
-
-            document.addEventListener('keydown', function(e) {
-                switch(e.key) {
-                    case 'ArrowUp':
-                        if (player.y > 0) player.y -= player.speed;
-                        break;
-                    case 'ArrowDown':
-                        if (player.y < gameCanvas.height - player.size) player.y += player.speed;
-                        break;
-                    case 'ArrowLeft':
-                        if (player.x > 0) player.x -= player.speed;
-                        break;
-                    case 'ArrowRight':
-                        if (player.x < gameCanvas.width - player.size) player.x += player.speed;
-                        break;
-                }
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
 
-        // Funções da calculadora
-        function appendToDisplay(value) {
-            document.getElementById("calculator-display").value += value;
-        }
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Mensagem enviada com sucesso!');
+            e.target.reset();
+        });
 
-        function clearDisplay() {
-            document.getElementById("calculator-display").value = "";
-        }
+        // System form submission
+        document.getElementById('system-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const title = document.getElementById('system-title').value;
+            const description = document.getElementById('system-description').value;
+            const design = document.getElementById('system-design').value;
 
-        function calculateResult() {
             try {
-                const result = eval(document.getElementById("calculator-display").value);
-                document.getElementById("calculator-display").value = result;
+                await push(ref(database, 'systems'), { title, description, design });
+                alert('Sistema adicionado com sucesso!');
+                e.target.reset();
             } catch (error) {
-                document.getElementById("calculator-display").value = "Erro";
+                console.error('Erro ao adicionar sistema:', error);
+                alert('Erro ao adicionar sistema. Por favor, tente novamente.');
             }
-        }
+        });
 
-        // Função do navegador
-        function loadURL() {
-            const url = document.getElementById("url-bar").value;
-            document.getElementById("browser-frame").src = url.startsWith("http") ? url : `https://${url}`;
-        }
-
-        // Função para abrir aplicativos
-        function openApp(appId) {
-            $(`#${appId}`).show().css('z-index', 101);
-            $(".window").not(`#${appId}`).css('z-index', 100);
-            updateTaskbar();
-        }
-
-        // Função para atualizar a barra de tarefas
-        function updateTaskbar() {
-            const openWindows = $(".window:visible");
-            $("#open-windows").empty();
-            openWindows.each(function() {
-                const appId = $(this).attr('id');
-                const appName = $(this).find('.window-title').text();
-                $("#open-windows").append(`<div class="taskbar-item" data-app="${appId}">${appName}</div>`);
+        // Animate icons on hover
+        document.querySelectorAll('.icon-item').forEach(item => {
+            item.addEventListener('mouseover', () => {
+                item.style.transform = 'scale(1.1)';
             });
-
-            $(".taskbar-item").on("click", function() {
-                const appId = $(this).data("app");
-                $(`#${appId}`).toggle();
+            item.addEventListener('mouseout', () => {
+                item.style.transform = 'scale(1)';
             });
-        }
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.querySelectorAll('section').forEach(section => {
+                const speed = section.dataset.speed || 0.5;
+                section.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
     </script>
 </body>
 </html>
